@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Untuk kamu 🌸</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #fff3f7;
+        --ink: #d6457f;
+        --soft: #f9b6cf;
+        --card: #ffffffd9;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 15% 8%, #ffdcea, transparent 50%),
+          radial-gradient(circle at 90% 85%, #dfeaff, transparent 55%),
+          radial-gradient(circle at 80% 15%, #fff3c9, transparent 40%), #fff3f7;
+        font-family: "Fredoka", "Quicksand", system-ui, sans-serif;
+        color: var(--ink);
+        touch-action: none;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+      img {
+        mix-blend-mode: multiply;
+        pointer-events: none;
+        -webkit-user-drag: none;
+      }
+      #bg {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+      }
+      #bg span {
+        position: absolute;
+        white-space: nowrap;
+        font-weight: 600;
+        padding: 5px 14px;
+        border-radius: 30px;
+        color: #fff;
+        box-shadow: 0 3px 0 #00000012;
+        animation: floaty ease-in-out infinite alternate;
+      }
+      @keyframes floaty {
+        from {
+          transform: translateY(0) rotate(var(--a));
+        }
+        to {
+          transform: translateY(-14px) rotate(calc(var(--a) * -1));
+        }
+      }
+      #bg .dec {
+        position: absolute;
+        opacity: 0.85;
+        animation: twk 2.5s ease-in-out infinite alternate;
+      }
+      @keyframes twk {
+        from {
+          transform: scale(0.7) rotate(-12deg);
+        }
+        to {
+          transform: scale(1.2) rotate(12deg);
+        }
+      }
+      #cat::after {
+        content: "";
+        position: absolute;
+        left: 22%;
+        right: 22%;
+        bottom: -6px;
+        height: 14px;
+        border-radius: 50%;
+        background: #d6457f26;
+        filter: blur(3px);
+        z-index: -1;
+      }
+      .bl {
+        position: absolute;
+        pointer-events: none;
+        animation: burst 1.8s ease-out forwards;
+      }
+      @keyframes burst {
+        0% {
+          transform: translate(-50%, -50%) translate(0, 0) scale(0.2)
+            rotate(0deg);
+          opacity: 1;
+        }
+        45% {
+          transform: translate(-50%, -50%)
+            translate(calc(var(--tx) * 0.8), var(--ty)) scale(1)
+            rotate(var(--r));
+        }
+        100% {
+          transform: translate(-50%, -50%)
+            translate(var(--tx), calc(var(--ty) * 0.55)) scale(0.9)
+            rotate(calc(var(--r) * 1.5));
+          opacity: 0;
+        }
+      }
+      #bg .fly,
+      #bg .fly2,
+      #bg .fly3 {
+        position: absolute;
+        top: 100%;
+        margin-left: -40px;
+        animation: fly linear forwards;
+      }
+      #bg .fly3 {
+        padding: 5px 14px;
+        border-radius: 30px;
+        color: #fff;
+        font-weight: 600;
+        white-space: nowrap;
+        box-shadow: 0 3px 0 #00000012;
+        opacity: 0.85;
+      }
+      #bg .fly {
+        opacity: 0.9;
+      }
+      @keyframes fly {
+        0% {
+          transform: translate(0, 0) rotate(var(--r));
+        }
+        25% {
+          transform: translate(var(--dx), -28vh) rotate(calc(var(--r) + 12deg));
+        }
+        50% {
+          transform: translate(calc(var(--dx) * -0.5), -58vh)
+            rotate(calc(var(--r) - 12deg));
+        }
+        100% {
+          transform: translate(var(--dx), -125vh) rotate(calc(var(--r) + 20deg));
+        }
+      }
+      #say {
+        position: fixed;
+        z-index: 25;
+        transform: translate(-50%, -100%) scale(0);
+        opacity: 0;
+        background: #fff;
+        color: var(--ink);
+        padding: 7px 15px;
+        border-radius: 18px;
+        font-weight: 600;
+        font-size: 15px;
+        box-shadow: 0 4px 0 #f9b6cf;
+        pointer-events: none;
+        white-space: nowrap;
+      }
+      #say.on {
+        animation: bub 2s forwards;
+      }
+      @keyframes bub {
+        10% {
+          opacity: 1;
+          transform: translate(-50%, -100%) scale(1);
+        }
+        80% {
+          opacity: 1;
+          transform: translate(-50%, -110%) scale(1);
+        }
+        100% {
+          opacity: 0;
+          transform: translate(-50%, -125%) scale(0.9);
+        }
+      }
+      #splash {
+        position: fixed;
+        inset: 0;
+        z-index: 50;
+        background: var(--bg);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 14px;
+        transition:
+          opacity 0.8s,
+          transform 0.8s;
+        cursor: pointer;
+      }
+      #splash img {
+        width: 150px;
+        animation: bob 2s ease-in-out infinite;
+      }
+      #splash h1 {
+        font-size: 30px;
+        margin: 0;
+      }
+      #splash p {
+        margin: 0;
+        opacity: 0.7;
+      }
+      #splash.gone {
+        opacity: 0;
+        transform: scale(1.2);
+        pointer-events: none;
+      }
+      @keyframes bob {
+        50% {
+          transform: translateY(-10px) rotate(3deg);
+        }
+      }
+      #stage {
+        position: fixed;
+        inset: 0;
+        z-index: 5;
+      }
+      .fl {
+        position: absolute;
+        width: 84px;
+        margin: -42px 0 0 -42px;
+        transform: scale(0);
+        transform-origin: 50% 85%;
+        animation:
+          pop 0.7s cubic-bezier(0.3, 1.8, 0.5, 1) forwards,
+          sway 2.2s ease-in-out 0.7s infinite alternate;
+      }
+      @keyframes pop {
+        to {
+          transform: scale(var(--s, 1)) rotate(var(--r, 0deg));
+        }
+      }
+      #cat {
+        position: absolute;
+        left: 50%;
+        top: 44%;
+        width: 230px;
+        margin: -115px 0 0 -115px;
+        z-index: 10;
+        touch-action: none;
+        cursor: grab;
+        animation: breathe 3s ease-in-out infinite;
+      }
+      #cat img {
+        width: 100%;
+        display: block;
+      }
+      #cat.hop {
+        animation: hop 0.5s ease-out;
+      }
+      #cat.drag {
+        animation: none;
+      }
+      #cat.back {
+        animation: none;
+        transition: transform 0.7s cubic-bezier(0.2, 2.2, 0.4, 0.6);
+      }
+      @keyframes breathe {
+        0%,
+        100% {
+          transform: scale(1, 1) rotate(-3deg);
+        }
+        50% {
+          transform: scale(1.05, 0.95) rotate(3deg) translateY(2px);
+        }
+      }
+      @keyframes sway {
+        from {
+          transform: scale(var(--s, 1)) rotate(var(--r, 0deg));
+        }
+        to {
+          transform: scale(calc(var(--s, 1) * 1.07))
+            rotate(calc(var(--r, 0deg) + 9deg));
+        }
+      }
+      @keyframes hop {
+        30% {
+          transform: translateY(-50px) scale(0.95, 1.1);
+        }
+        60% {
+          transform: translateY(0) scale(1.1, 0.9);
+        }
+      }
+      .heart {
+        position: absolute;
+        font-size: 24px;
+        z-index: 20;
+        pointer-events: none;
+        animation: up 1.6s ease-out forwards;
+      }
+      @keyframes up {
+        to {
+          transform: translateY(-140px) scale(1.4);
+          opacity: 0;
+        }
+      }
+      .guest {
+        position: absolute;
+        z-index: 8;
+        width: 110px;
+        pointer-events: none;
+        transition: transform 1.2s ease-in-out;
+      }
+      #msg {
+        position: fixed;
+        inset: 0;
+        z-index: 60;
+        background: #fff3f7ee;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 30px;
+        flex-direction: column;
+        gap: 12px;
+      }
+      #msg.on {
+        display: flex;
+      }
+      #msg h2 {
+        margin: 0;
+        font-size: 28px;
+      }
+      #msg p {
+        margin: 0;
+        max-width: 300px;
+        line-height: 1.6;
+        font-size: 17px;
+      }
+      #msg button {
+        border: 0;
+        background: var(--ink);
+        color: #fff;
+        padding: 10px 22px;
+        border-radius: 20px;
+        font: inherit;
+        font-weight: 700;
+        margin-top: 8px;
+      }
+      #hint {
+        position: fixed;
+        top: calc(env(safe-area-inset-top, 0px) + 16px);
+        width: 100%;
+        text-align: center;
+        z-index: 9;
+        font-size: 14px;
+        opacity: 0.75;
+        pointer-events: none;
+      }
+      #player {
+        position: fixed;
+        left: 50%;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 16px);
+        transform: translateX(-50%);
+        width: min(340px, 90vw);
+        z-index: 30;
+        background: var(--card);
+        backdrop-filter: blur(8px);
+        border-radius: 20px;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        box-shadow: 0 6px 24px #d6457f33;
+        touch-action: auto;
+      }
+      #player .cv {
+        width: 54px;
+        height: 54px;
+        border-radius: 12px;
+        background: #fff;
+        overflow: hidden;
+        flex: none;
+      }
+      #player .cv img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      #player .in {
+        flex: 1;
+        min-width: 0;
+      }
+      #title {
+        font-weight: 700;
+        font-size: 15px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .bar {
+        height: 5px;
+        background: #f9b6cf66;
+        border-radius: 4px;
+        margin: 9px 0 3px;
+        overflow: hidden;
+        cursor: pointer;
+      }
+      .bar i {
+        display: block;
+        height: 100%;
+        width: 0;
+        background: var(--ink);
+        border-radius: 4px;
+      }
+      .t {
+        font-size: 11px;
+        opacity: 0.7;
+        display: flex;
+        justify-content: space-between;
+      }
+      #play {
+        border: 0;
+        background: var(--ink);
+        color: #fff;
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        font-size: 16px;
+        flex: none;
+      }
+      .wave {
+        display: none;
+        gap: 2px;
+        align-items: flex-end;
+        height: 14px;
+        margin-left: 6px;
+      }
+      .wave b {
+        width: 3px;
+        background: var(--ink);
+        border-radius: 2px;
+        animation: w 0.8s ease-in-out infinite;
+      }
+      .wave b:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .wave b:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      @keyframes w {
+        0%,
+        100% {
+          height: 3px;
+        }
+        50% {
+          height: 14px;
+        }
+      }
+      #player.playing .wave {
+        display: flex;
+      }
+      #from {
+        position: fixed;
+        bottom: calc(env(safe-area-inset-bottom, 0px) + 100px);
+        width: 100%;
+        text-align: center;
+        font-size: 13px;
+        opacity: 0.7;
+        z-index: 9;
+        pointer-events: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="bg"></div>
+    <div id="splash">
+      <img src="images/kucing-stroberi.jpg" alt="" />
+      <h1 id="sp-h"></h1>
+      <p>ketuk untuk membuka 🌸</p>
+    </div>
+    <div id="hint">pencet, tarik, atau tahan kucingnya ✨</div>
+    <div id="stage">
+      <div id="cat"><img src="images/kucing-stroberi.jpg" alt="kucing" /></div>
+    </div>
+    <div id="from"></div>
+    <div id="msg">
+      <h2 id="m-h"></h2>
+      <p id="m-p"></p>
+      <button id="m-b">tutup 💕</button>
+    </div>
+    <div id="player">
+      <div class="cv"><img src="images/kucing-hiu.jpg" alt="" /></div>
+      <div class="in">
+        <div style="display: flex; align-items: center">
+          <div id="title"></div>
+          <div class="wave"><b></b><b></b><b></b></div>
+        </div>
+        <div class="bar" id="bar"><i id="fill"></i></div>
+        <div class="t">
+          <span id="cur">0:00</span><span id="dur">0:00</span>
+        </div>
+      </div>
+      <button id="play">▶</button>
+    </div>
+    <audio id="au" loop></audio>
+    <script>
+      // ====== UBAH DI SINI ======
+      const NAMA_DIA = "NABILA SAYANG NYA AUFA",
+        NAMA_KAMU = "BOCILNYA NABILA";
+      const JUDUL_LAGU = "Judul Lagu Kamu";
+      const AUDIO_SRC = "audio/lagu.mp3"; // isi dengan data/URL mp3
+      const PESAN =
+        "Makasih sudah jadi tempat paling nyaman buat pulang. Aku sayang kamu, hari ini dan seterusnya.";
+      // ==========================
+      const IM = {
+        flower: "images/bunga.jpg",
+        shark: "images/kucing-hiu.jpg",
+        kitty: "images/kucing-bunga.jpg",
+        banana: "images/kucing-pisang.jpg",
+      };
+      const $ = (id) => document.getElementById(id);
+      $("sp-h").textContent = "untuk " + NAMA_DIA + " 🌸";
+      $("from").textContent = "dari " + NAMA_KAMU + " 💕";
+      $("title").textContent = JUDUL_LAGU;
+      // background words
+      const W = [
+        "love you",
+        "te amo",
+        "sayang kamu nabila",
+        "i love you",
+        "te quiero",
+        "aku cinta kamu nabila",
+        "mi amor",
+        "sayangku",
+      ];
+      const C = [
+        "#ff9ec4",
+        "#ffb86b",
+        "#8fd3ff",
+        "#b79cff",
+        "#7fdba8",
+        "#ff8fa3",
+      ];
+      const bg = $("bg"),
+        N = Math.min(34, Math.floor((innerWidth * innerHeight) / 13000));
+      for (let i = 0; i < N; i++) {
+        const s = document.createElement("span");
+        s.textContent = W[i % W.length] + " " + ["♡", "✿", "✦", "🐾"][i % 4];
+        s.style.left = Math.random() * 80 - 3 + "%";
+        s.style.top = Math.random() * 94 + "%";
+        s.style.background = C[i % C.length];
+        s.style.opacity = 0.4 + Math.random() * 0.25;
+        s.style.fontSize = 12 + Math.random() * 8 + "px";
+        s.style.setProperty("--a", Math.random() * 22 - 11 + "deg");
+        s.style.animationDuration = 2.5 + Math.random() * 3 + "s";
+        s.style.animationDelay = -Math.random() * 4 + "s";
+        bg.appendChild(s);
+      }
+      for (let i = 0; i < 24; i++) {
+        const d = document.createElement("div");
+        d.className = "dec";
+        d.textContent = ["🌸", "✨", "💗", "⭐", "☁️", "🐾"][i % 6];
+        d.style.left = Math.random() * 94 + "%";
+        d.style.top = Math.random() * 94 + "%";
+        d.style.fontSize = 14 + Math.random() * 16 + "px";
+        d.style.animationDelay = -Math.random() * 3 + "s";
+        d.style.animationDuration = 1.8 + Math.random() * 2 + "s";
+        bg.appendChild(d);
+      }
+      $("splash").onclick = () => {
+        $("splash").classList.add("gone");
+        setTimeout(() => {
+          guest();
+        }, 1500);
+      };
+      const stage = $("stage"),
+        cat = $("cat");
+      let taps = 0;
+      function flower() {
+        if (Math.random() < 0.5) flyText();
+        const c = cat.getBoundingClientRect(),
+          f = document.createElement("img");
+        f.src = IM.flower;
+        f.className = "bl";
+        f.style.left = c.left + c.width / 2 + "px";
+        f.style.top = c.top + c.height * 0.35 + "px";
+        f.style.width = 60 + Math.random() * 40 + "px";
+        f.style.setProperty("--tx", Math.random() * 300 - 150 + "px");
+        f.style.setProperty("--ty", -(110 + Math.random() * 170) + "px");
+        f.style.setProperty("--r", Math.random() * 60 - 30 + "deg");
+        stage.appendChild(f);
+        setTimeout(() => f.remove(), 1900);
+      }
+      function rnd() {
+        const c = cat.getBoundingClientRect();
+        let x,
+          y,
+          k = 0;
+        do {
+          x = 30 + Math.random() * (innerWidth - 60);
+          y = 70 + Math.random() * (innerHeight - 200);
+          k++;
+        } while (
+          k < 8 &&
+          x > c.left - 30 &&
+          x < c.right + 30 &&
+          y > c.top - 30 &&
+          y < c.bottom + 30
+        );
+        return [x, y];
+      }
+      function flyText() {
+        const t = document.createElement("div");
+        t.className = "fly3";
+        t.textContent =
+          W[(Math.random() * W.length) | 0] +
+          " " +
+          ["♡", "✿", "✦"][(Math.random() * 3) | 0];
+        t.style.left = Math.random() * 80 + 5 + "%";
+        t.style.background = C[(Math.random() * C.length) | 0];
+        t.style.fontSize = 14 + Math.random() * 7 + "px";
+        t.style.setProperty("--r", Math.random() * 20 - 10 + "deg");
+        t.style.setProperty("--dx", Math.random() * 60 - 30 + "px");
+        t.style.animationDuration = 6 + Math.random() * 4 + "s";
+        bg.appendChild(t);
+        setTimeout(() => t.remove(), 10500);
+      }
+      function heart() {
+        const h = document.createElement("div");
+        h.className = "fly2";
+        h.textContent = ["💗", "💕", "🌸", "💖"][(Math.random() * 4) | 0];
+        h.style.left = Math.random() * 90 + 5 + "%";
+        h.style.fontSize = 20 + Math.random() * 14 + "px";
+        h.style.setProperty("--r", "0deg");
+        h.style.setProperty("--dx", Math.random() * 60 - 30 + "px");
+        h.style.animationDuration = 5 + Math.random() * 4 + "s";
+        bg.appendChild(h);
+        setTimeout(() => h.remove(), 9500);
+      }
+      let sx,
+        sy,
+        down = false,
+        drag = false,
+        held = false,
+        hold,
+        hi;
+      cat.addEventListener("pointerdown", (e) => {
+        down = true;
+        drag = false;
+        held = false;
+        sx = e.clientX;
+        sy = e.clientY;
+        cat.setPointerCapture(e.pointerId);
+        cat.classList.remove("back", "hop");
+        hold = setTimeout(() => {
+          if (!drag) {
+            held = true;
+            const c = cat.getBoundingClientRect();
+            hi = setInterval(() => heart(c.left + c.width / 2, c.top), 250);
+          }
+        }, 600);
+      });
+      cat.addEventListener("pointermove", (e) => {
+        if (!down) return;
+        const dx = e.clientX - sx,
+          dy = e.clientY - sy,
+          d = Math.hypot(dx, dy);
+        if (d > 10 && !held) {
+          drag = true;
+          cat.classList.add("drag");
+          const a = (Math.atan2(dy, dx) * 180) / Math.PI;
+          cat.style.transform = `translate(${dx * 0.6}px,${dy * 0.6}px) rotate(${a}deg) scale(${1 + d / 220},${Math.max(0.55, 1 - d / 500)}) rotate(${-a}deg)`;
+        }
+      });
+      function end() {
+        if (!down) return;
+        down = false;
+        clearTimeout(hold);
+        clearInterval(hi);
+        const c = cat.getBoundingClientRect(),
+          cx = c.left + c.width / 2,
+          cy = c.top + c.height / 2;
+        if (drag) {
+          cat.classList.remove("drag");
+          cat.classList.add("back");
+          cat.style.transform = "";
+          for (let i = 0; i < 7; i++)
+            setTimeout(() => {
+              const a = Math.random() * 6.28,
+                r = 90 + Math.random() * 130;
+              flower(
+                Math.min(innerWidth - 40, Math.max(40, cx + Math.cos(a) * r)),
+                Math.min(innerHeight - 160, Math.max(60, cy + Math.sin(a) * r)),
+              );
+            }, i * 60);
+          count();
+        } else if (!held) {
+          cat.classList.add("hop");
+          setTimeout(() => cat.classList.remove("hop"), 520);
+          const [x, y] = rnd();
+          flower(x, y);
+          count();
+        }
+        cat.style.transform = drag ? "" : cat.style.transform;
+      }
+      cat.addEventListener("pointerup", end);
+      cat.addEventListener("pointercancel", end);
+      function count() {
+        taps++;
+        flyText();
+        if (taps % 10 === 0) {
+          $("m-h").textContent = "Kejutan! 🎉";
+          $("m-p").textContent = PESAN + " — " + NAMA_KAMU;
+          $("msg").classList.add("on");
+          for (let i = 0; i < 10; i++) {
+            const [x, y] = rnd();
+            flower(x, y);
+          }
+        }
+      }
+      $("m-b").onclick = () => $("msg").classList.remove("on");
+      function sparkle(x, y) {
+        for (let i = 0; i < 4; i++) {
+          const h = document.createElement("div");
+          h.className = "heart";
+          h.style.fontSize = "16px";
+          h.textContent = ["✨", "💖", "🌸"][i % 3];
+          h.style.left = x + Math.random() * 70 - 35 + "px";
+          h.style.top = y + Math.random() * 30 - 15 + "px";
+          stage.appendChild(h);
+          setTimeout(() => h.remove(), 1700);
+        }
+      }
+      const SAY = [
+        "sayang kamu~ 💕",
+        "te amo 🌸",
+        "mmuah 😽",
+        "love you!",
+        "pencet lagi dong 🥺",
+        "hehe geli ✨",
+        "kamu lucu banget",
+        "miaw~ 💗",
+      ];
+      function say() {
+        let b = $("say");
+        if (!b) {
+          b = document.createElement("div");
+          b.id = "say";
+          document.body.appendChild(b);
+        }
+        const c = cat.getBoundingClientRect();
+        b.textContent = SAY[(Math.random() * SAY.length) | 0];
+        b.style.left = c.left + c.width / 2 + "px";
+        b.style.top = c.top + 10 + "px";
+        b.classList.remove("on");
+        void b.offsetWidth;
+        b.classList.add("on");
+      }
+
+      // cats passing by
+      function guest() {
+        const g = document.createElement("img");
+        const k = ["banana", "shark", "kitty"][(Math.random() * 3) | 0];
+        g.src = IM[k];
+        g.className = "guest";
+        const side = Math.random() < 0.5 ? "left" : "right",
+          y = 80 + Math.random() * (innerHeight - 330);
+        g.style.top = y + "px";
+        if (k === "banana") {
+          g.style[side] = "-70px";
+          g.style.transform =
+            "rotate(" + (side === "left" ? "15" : "-15") + "deg)";
+          document.body.appendChild(g);
+          setTimeout(
+            () =>
+              (g.style.transform = `translateX(${side === "left" ? 45 : -45}px) rotate(${side === "left" ? 15 : -15}deg)`),
+            50,
+          );
+          setTimeout(
+            () =>
+              (g.style.transform = `rotate(${side === "left" ? 15 : -15}deg)`),
+            2800,
+          );
+        } else {
+          g.style.left = "-120px";
+          g.style.transition = "transform 7s linear";
+          document.body.appendChild(g);
+          setTimeout(
+            () =>
+              (g.style.transform = `translateX(${innerWidth + 260}px) translateY(-20px) rotate(8deg)`),
+            50,
+          );
+        }
+        setTimeout(() => g.remove(), 7500);
+        setTimeout(guest, 9000);
+      }
+      // player
+      const au = $("au"),
+        pl = $("player");
+      let fake = 0,
+        ft;
+      const fmt = (s) =>
+        ((s / 60) | 0) + ":" + String((s % 60) | 0).padStart(2, "0");
+      if (AUDIO_SRC) {
+        au.src = AUDIO_SRC;
+        au.onloadedmetadata = () => ($("dur").textContent = fmt(au.duration));
+        au.ontimeupdate = () => {
+          $("fill").style.width = (au.currentTime / au.duration) * 100 + "%";
+          $("cur").textContent = fmt(au.currentTime);
+        };
+      } else $("dur").textContent = "3:30";
+      $("play").onclick = () => {
+        const on = !pl.classList.contains("playing");
+        pl.classList.toggle("playing", on);
+        $("play").textContent = on ? "❚❚" : "▶";
+        if (AUDIO_SRC) {
+          on ? au.play() : au.pause();
+        } else {
+          clearInterval(ft);
+          if (on)
+            ft = setInterval(() => {
+              fake = (fake + 1) % 210;
+              $("fill").style.width = (fake / 210) * 100 + "%";
+              $("cur").textContent = fmt(fake);
+            }, 1000);
+        }
+      };
+      $("bar").onclick = (e) => {
+        if (AUDIO_SRC && au.duration) {
+          const r = $("bar").getBoundingClientRect();
+          au.currentTime = ((e.clientX - r.left) / r.width) * au.duration;
+        }
+      };
+    </script>
+  </body>
+</html>
